@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '76b1803e-c1f0-4c8c-9bb0-84396c407fa2'
   imageRepository: 'madhavmemazurepip'
   containerRegistry: 'testmadhav.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'memberworkflow/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'testmadhava01a-auth'
 
