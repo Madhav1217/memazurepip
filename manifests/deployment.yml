@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: madhavmemazurepip 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: madhavmemazurepip 
+    spec:
+      containers:
+        - name: madhavmemazurepip 
+          image: testmadhav.azurecr.io/madhavmemazurepip
+          ports:
+          - containerPort: 80
