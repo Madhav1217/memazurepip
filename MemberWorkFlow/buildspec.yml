@@ -1,0 +1,55 @@
+version: 0.2
+
+env:
+  variables:
+    NUGET_PACKAGE_LOCAL: nugetpackages
+    PUBLISH: publish
+
+phases:
+  pre_build:
+    commands:
+      - mkdir $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+  build:
+    commands:
+
+      - cd $env:CODEBUILD_SRC_DIR_c_Common\Aliera.Utilities
+      - dotnet restore 
+      - dotnet build 
+      - dotnet pack -o $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+      
+      - cd $env:CODEBUILD_SRC_DIR_c_Common\Aliera.BusinessObjects
+      - dotnet restore 
+      - dotnet build 
+      - dotnet pack -o $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+      
+      - cd $env:CODEBUILD_SRC_DIR_c_Common\Aliera.DatabaseEntities
+      - dotnet restore 
+      - dotnet build 
+      - dotnet pack -o $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+      
+      - cd $env:CODEBUILD_SRC_DIR_c_Common\Aliera.AuthUtility
+      - dotnet restore 
+      - dotnet build 
+      - dotnet pack -o $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+      
+      - cd $env:CODEBUILD_SRC_DIR_s_MemberDataAccess\Aliera.MemberDataAccess
+      - dotnet restore 
+      - dotnet build 
+      - dotnet pack -o $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+
+      - cd $env:CODEBUILD_SRC_DIR_s_MemberService\Aliera.MemberService
+      - dotnet restore 
+      - dotnet build 
+      - dotnet pack -o $env:CODEBUILD_SRC_DIR\..\$env:NUGET_PACKAGE_LOCAL
+
+      - cd $env:CODEBUILD_SRC_DIR\Aliera.MemberWorkflow
+      - dotnet restore 
+      - dotnet build 
+      - dotnet publish -o $env:CODEBUILD_SRC_DIR\..\$env:PUBLISH
+      - copy appspec.yml $env:CODEBUILD_SRC_DIR\..\$env:PUBLISH
+      - copy before-install.bat $env:CODEBUILD_SRC_DIR\..\$env:PUBLISH
+      - copy after-install.bat $env:CODEBUILD_SRC_DIR\..\$env:PUBLISH
+artifacts:
+  files:
+    - '**/*'
+  base-directory: $env:CODEBUILD_SRC_DIR\..\$env:PUBLISH

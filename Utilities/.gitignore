@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Aliera.Utilities/bin
+/Aliera.Utilities/obj
+/Aliera.Utilities/Aliera.Utilities.csproj.user
+/Utilities

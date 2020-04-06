@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Aliera.AuthService/bin
+/Aliera.AuthService/obj
+/Aliera.AuthService/Aliera.AuthService.csproj.user
+
+/AuthDataAccess/obj
+/AuthService/obj

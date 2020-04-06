@@ -1,0 +1,10 @@
+﻿BP2.0 DB Scripts to deploy
+===========================
+
+-- Use database "AlieraHealthcare" and deploy the following scripts
+1. DDL_Schema_AlieraHealthcare.sql
+2. DML_Schema_AlieraHealthcare.sql
+3. UDF_SP_Schema_AlieraHealthcare.sql
+
+-- Use database "Audit" and deploy the following scripts
+4. DML_Schema_AlieraAudit.sql

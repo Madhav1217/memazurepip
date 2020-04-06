@@ -1,0 +1,44 @@
+{
+  "LoggerSettings": {
+    "Default": "Error",
+    "IsSqlServerLog": true,
+    "IsGlobalDebugInformation": true,
+    "MessageTemplate": "HTTP {RequestMethod} {RequestPath} responded {StatusCode} in {Elapsed:0.0000} ms",
+    "MessageTemplateForPostRequest": "Process Started: Request Path {RequestPath} in {RequestMethod} Method Parameters Received : {RequestParameters}  Process Execution Start Time : {Elapsed:0.0000} ms",
+    "MessageTemplateForGetRequest": "Process Started: Request Path {RequestPath} in {RequestMethod} Method Process Execution Start Time : {Elapsed:0.0000} ms",
+    "MessageTemplateForResponse": "Process End: HTTP Status Code : {StatusCode} Response : {Response} Process Execution End Time : {Elapsed:0.0000} ms",
+    "VerboseMessageTemplate": "Critical Exception occured {exception} Error Code {code}",
+    "ConnectionString": "Server=.\\SQLEXPRESS;Database=AlieraHealthcare;Trusted_Connection=True;",
+    "TableName": "Logs"
+  },
+  "Serilog": {
+    "Using": [ "Serilog.Sinks.Console" ],
+    "MinimumLevel": {
+      "Default": "Error",
+      "Override": {
+        "Microsoft": "Warning",
+        "System": "Warning"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "RollingFile",
+        "Args": {
+          "pathFormat": "D:\\logs\\memberworkflowlog-{Date}.txt",
+          "rollingInterval": "Day",
+          "buffered": "false", // it need to be set to false otherwise, during logging we will face a delay in writting logs.
+          "outputTemplate": "{Timestamp:yyyy-MM-dd hh:mm:ss tt} [{Level}]{NewLine}{Message}{NewLine}{Exception}{NewLine}"
+        }
+      }
+    ],
+    "Enrich": [ "FromLogContext" ],
+    "Filter": [
+      {
+        "Name": "ByExcluding",
+        "Args": {
+          "expression": "RequestPath like '%favicon%'"
+        }
+      }
+    ]
+  }
+}

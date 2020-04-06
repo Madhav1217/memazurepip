@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/DatabaseEntities/obj
+/DatabaseEntities/bin
+/DatabaseEntities/DatabaseEntities.csproj.user
+/Aliera.DatabaseEntities/bin/Debug
+/Aliera.DatabaseEntities/obj
+/Aliera.DatabaseEntities/Aliera.DatabaseEntities.csproj.user
